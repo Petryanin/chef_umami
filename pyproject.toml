@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "chef_umami"
+version = "0.1.0"
+description = "telegram culinary bot"
+authors = ["petryanin <aspetryanin@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "3.11.5"
+aiogram = "^3.0.0"
+pre-commit = "^3.3.3"
+fastapi = "^0.103.0"
+SQLAlchemy = "^2.0.20"
+ruff = "^0.0.286"
+black = "^23.7.0"
+pydantic-settings = "^2.0.3"
+colorlog = "^6.7.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "N", "C", "B", "RUF100"]  # TODO: add "D"
+ignore = [
+    # "D200",
+    # "D202",
+    # "D203",
+    # "D205",
+    # "D210",
+    # "D212",
+    # "D213",
+    # "D400",
+    # "D406",
+    # "D407",
+    # "D415",
+    # "N815",
+]
