@@ -23,18 +23,18 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 88
-select = ["E", "F", "W", "N", "C", "B", "RUF100"]  # TODO: add "D"
+select = ["D", "E", "F", "W", "N", "C", "B", "RUF100"]
 ignore = [
-    # "D200",
-    # "D202",
-    # "D203",
-    # "D205",
-    # "D210",
-    # "D212",
-    # "D213",
-    # "D400",
-    # "D406",
-    # "D407",
-    # "D415",
-    # "N815",
+    "D200",
+    "D202",
+    "D203",
+    "D205",
+    "D210",
+    "D212",
+    "D213",
+    "D400",
+    "D406",
+    "D407",
+    "D415",
+    "N815",
 ]

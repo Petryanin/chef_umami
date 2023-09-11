@@ -1,3 +1,4 @@
+"""Обработчик команды `/start`."""
 
 from aiogram import types
 from aiogram.filters.command import Command
@@ -9,7 +10,7 @@ from tgbot.loader import dp
 
 @dp.message(Command("start"))
 async def start_command(message: types.Message) -> None:
-    """Обработчик команды `/start`
+    """Обработчик команды `/start`.
 
     Args:
         message: Объект сообщения от пользователя.
