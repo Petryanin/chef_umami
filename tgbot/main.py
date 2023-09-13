@@ -52,11 +52,12 @@ def register_all_handlers() -> None:
 
 async def main() -> None:
     """Точка входа."""
+    logging.info("Initializing bot")
+
     register_all_handlers()
 
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
-    logging.info("Initializing bot")
     asyncio.run(main())

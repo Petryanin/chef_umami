@@ -1,3 +1,3 @@
 """Пакет обработчиков сообщений."""
 
-from tgbot.handlers import admin, start, user, help, state, errors  # noqa: F401
+from tgbot.handlers import start, help, user  # noqa: F401
