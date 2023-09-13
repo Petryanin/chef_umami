@@ -3,9 +3,9 @@
 from aiogram import types
 from aiogram.filters.command import Command
 
-from tgbot.config import bot_config
-from tgbot.messages import ru
-from tgbot.loader import dp
+from app.config import bot_config
+from app.messages import ru
+from app.loader import dp
 
 
 @dp.message(Command("start"))

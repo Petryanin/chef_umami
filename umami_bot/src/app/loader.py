@@ -2,7 +2,7 @@
 
 from aiogram import Bot, Dispatcher
 
-from tgbot.config import bot_config, init_logging_config
+from app.config import bot_config, init_logging_config
 
 
 init_logging_config()

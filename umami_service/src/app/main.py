@@ -5,8 +5,8 @@ import logging
 import uvicorn
 from fastapi import FastAPI
 
-from umami_service import config
-from umami_service.middlewares.logging import LoggingMiddleware
+from app import config
+from app.middlewares.logging import LoggingMiddleware
 
 
 app = FastAPI(
@@ -26,7 +26,7 @@ async def index() -> dict:
 
 if __name__ == "__main__":
     uvicorn.run(
-        "umami_service.main:app",
+        "app.main:app",
         log_config=config.get_logging_config( ),
         log_level=logging.DEBUG,
         reload=True,

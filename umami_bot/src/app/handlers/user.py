@@ -2,8 +2,8 @@
 
 from aiogram import types
 
-from tgbot.messages import ru
-from tgbot.loader import dp
+from app.messages import ru
+from app.loader import dp
 
 
 @dp.message()

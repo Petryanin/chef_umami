@@ -4,7 +4,7 @@ import asyncio
 import logging
 
 
-from tgbot.loader import dp, bot
+from app.loader import dp, bot
 
 
 # def register_all_middlewares(dispatcher: Dispatcher) -> None:
@@ -16,7 +16,7 @@ def register_all_handlers() -> None:
     """Регистрирует все хэндлеры бота."""
     logging.info("Registering handlers")
 
-    from tgbot import handlers  # noqa: F401
+    from app import handlers  # noqa: F401
 
 
 # async def register_all_commands(dispatcher: Dispatcher) -> None:
