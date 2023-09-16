@@ -4,9 +4,9 @@
 from pydantic import BaseModel
 
 
-class ReceipeSimple(BaseModel):
+class RecipeSimple(BaseModel):
     """Простая схема рецепта."""
 
-    receipe_id: int
+    recipe_id: int
     name: str
     description: str

@@ -3,14 +3,16 @@
 
 from fastapi import APIRouter, Path
 
-from app.schemas.receipe import ReceipeSimple
+from app.schemas.recipe import RecipeSimple
 
 
 router = APIRouter()
 
 
 @router.get("")
-async def get_receipes_by_search_string(search_string: str = Path()) -> list[ReceipeSimple]:
+async def get_recipes_by_search_string(
+    search_string: str = Path(),
+) -> list[RecipeSimple]:
     """Возвращает список рецептов по строке поиска.
 
     Args:
@@ -19,4 +21,3 @@ async def get_receipes_by_search_string(search_string: str = Path()) -> list[Rec
     Returns:
         Список рецептов.
     """
-

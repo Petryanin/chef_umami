@@ -26,6 +26,7 @@ build-backend = "poetry.core.masonry.api"
 line-length = 88
 select = ["D", "E", "F", "W", "N", "C", "B", "RUF100"]
 ignore = [
+    "B008",
     "D200",
     "D202",
     "D203",
