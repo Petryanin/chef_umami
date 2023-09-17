@@ -1,4 +1,4 @@
-"""Модуль конфигурации бота."""
+"""Модуль конфигурации сервиса."""
 
 import logging.config
 import yaml
@@ -17,13 +17,13 @@ class Settings(BaseSettings):
     logging_config_path: str
 
     # database
-    db_user: str
-    db_password: str
-    db_name: str
-    db_port: int
-    db_host: str
+    postgres_user: str
+    postgres_password: str
+    postgres_name: str
+    postgres_port: int
+    postgres_host: str
 
-    model_config = SettingsConfigDict(env_file="../.env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
 app_config = Settings()

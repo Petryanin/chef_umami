@@ -31,32 +31,8 @@ handlers:
         level: DEBUG
         formatter: verbose
         stream: ext://sys.stdout
-    # file:
-    #     class: logging.handlers.TimedRotatingFileHandler
-    #     level: DEBUG
-    #     formatter: verbose
-    #     when: D
-    #     backupCount: 0
-    #     filename: ./logs/training-stats.log
-    # uvicorn:
-    #     class: logging.handlers.TimedRotatingFileHandler
-    #     level: DEBUG
-    #     formatter: verbose
-    #     when: D
-    #     backupCount: 0
-    #     filename: ./logs/uvicorn.log
 
 loggers:
     root:
         level: DEBUG
         handlers: [console]
-    # app:
-    #     level: DEBUG
-    #     handlers: [file]
-    #     propagate: yes
-    #     qualname: app
-    # uvicorn:
-    #     level: INFO
-    #     handlers: [uvicorn]
-    #     propagate: yes
-    #     qualname: uvicorn

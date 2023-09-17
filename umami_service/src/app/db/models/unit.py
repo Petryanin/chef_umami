@@ -11,6 +11,6 @@ class UnitModel(Base):
 
     __tablename__ = "unit"
 
-    uint_id: Mapped[const.DBTypes.integer] = mapped_column(primary_key=True)
-    short_name: Mapped[const.DBTypes.varchar_50] = mapped_column(nullable=False)
-    full_name: Mapped[const.DBTypes.varchar_255] = mapped_column(nullable=False)
+    unit_id: Mapped[const.DBTypes.integer] = mapped_column(primary_key=True)
+    short_name: Mapped[const.DBTypes.varchar_50]
+    full_name: Mapped[const.DBTypes.varchar_255]

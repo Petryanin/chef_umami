@@ -11,11 +11,11 @@ from app.config import app_config
 
 DATABASE_URL = URL.create(
     drivername="postgresql+asyncpg",
-    username=app_config.db_user,
-    password=app_config.db_password,
-    host=app_config.db_host,
-    port=app_config.db_port,
-    database=app_config.db_name,
+    username=app_config.postgres_user,
+    password=app_config.postgres_password,
+    host=app_config.postgres_host,
+    port=app_config.postgres_port,
+    database=app_config.postgres_name,
 )
 
 

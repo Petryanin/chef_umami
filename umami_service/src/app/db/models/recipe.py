@@ -12,10 +12,10 @@ class RecipeModel(Base):
     __tablename__ = "recipe"
 
     recipe_id: Mapped[const.DBTypes.integer] = mapped_column(primary_key=True)
-    name: Mapped[const.DBTypes.varchar_50] = mapped_column(nullable=False)
-    description: Mapped[const.DBTypes.varchar_255] = mapped_column()
-    instructions: Mapped[const.DBTypes.text] = mapped_column()
-    cooking_time: Mapped[const.DBTypes.smallint] = mapped_column()
-    servings: Mapped[const.DBTypes.smallint] = mapped_column()
-    difficulty: Mapped[const.DBTypes.smallint] = mapped_column()
-    category: Mapped[const.DBTypes.smallint] = mapped_column()
+    name: Mapped[const.DBTypes.varchar_50]
+    description: Mapped[const.DBTypes.varchar_255 | None]
+    instructions: Mapped[const.DBTypes.text | None]
+    cooking_time: Mapped[const.DBTypes.smallint | None]
+    servings: Mapped[const.DBTypes.smallint | None]
+    difficulty: Mapped[const.DBTypes.smallint | None]
+    category: Mapped[const.DBTypes.smallint | None]

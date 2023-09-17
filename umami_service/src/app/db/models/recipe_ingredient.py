@@ -22,5 +22,5 @@ class RecipeIngredientModel(Base):
         ForeignKey("ingredient.ingredient_id", ondelete="CASCADE")
     )
     unit_id: Mapped[const.DBTypes.integer] = mapped_column(ForeignKey("unit.unit_id"))
-    amount: Mapped[const.DBTypes.numeric] = mapped_column(nullable=False)
-    sort: Mapped[const.DBTypes.smallint] = mapped_column()
+    amount: Mapped[const.DBTypes.numeric | None]
+    sort: Mapped[const.DBTypes.smallint | None]

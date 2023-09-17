@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  umami_bot:
+    build: ./umami_bot
+    container_name: bot
+    restart: always
+    volumes:
+      - ./umami_bot:/usr/umami_bot
+
+  umami_service:
+    build: ./umami_service
+    container_name: service
+    restart: always
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    volumes:
+      - ./umami_service:/usr/umami_service
+
+  postgres:
+    image: postgres:16.0-alpine
+    container_name: postgres
+    restart: always
+    env_file:
+      - ./umami_service/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data

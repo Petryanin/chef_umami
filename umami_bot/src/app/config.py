@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     logging_config_path: str
 
     model_config = SettingsConfigDict(
-        env_file="../.env", env_file_encoding="utf-8"
+        env_file=".env", env_file_encoding="utf-8"
     )
 
 

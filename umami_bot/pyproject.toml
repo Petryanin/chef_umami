@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "umami_bot"
+version = "0.1.0"
+description = "telegram culinary bot"
+authors = ["petryanin <aspetryanin@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "3.11.5"
+aiogram = "^3.0.0"
+pydantic-settings = "^2.0.3"
+colorlog = "^6.7.0"
+pyyaml = "^6.0.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.6.1"]
+build-backend = "poetry.core.masonry.api"
