@@ -5,8 +5,7 @@ import logging
 import uvicorn
 from fastapi import FastAPI
 
-from app import config
-from app.middlewares.logging import LoggingMiddleware
+from app import config, loader
 
 
 app = FastAPI(
@@ -14,8 +13,6 @@ app = FastAPI(
     description="Your cooking companion!",
     version="0.1.0",
 )
-
-app.add_middleware(LoggingMiddleware)
 
 
 @app.get("/")
@@ -25,9 +22,12 @@ async def index() -> dict:
 
 
 if __name__ == "__main__":
+    loader.init_all(app)
     uvicorn.run(
         "app.main:app",
-        log_config=config.get_logging_config( ),
+        host="0.0.0.0",
+        port=8080,
+        log_config=config.logging_config,
         log_level=logging.DEBUG,
         reload=True,
     )

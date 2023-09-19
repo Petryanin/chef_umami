@@ -1,6 +1,5 @@
 """Модуль конфигурации сервиса."""
 
-import logging.config
 import yaml
 from typing import Any
 
@@ -26,14 +25,20 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
-app_config = Settings()
+def get_logging_config(config_path: str) -> dict[str, Any]:
+    """Инициализирует конфигурацию логгера приложения.
 
+    Args:
+        config_path: Путь к файлу конфигурации.
 
-def get_logging_config() -> dict[str, Any]:
-    """Инициализирует конфигурацию логгера приложения."""
-    with open(app_config.logging_config_path, "r") as config_file:
+    Returns:
+        Словарь с конфигурацией логгера.
+    """
+    with open(config_path, "r") as config_file:
         config = yaml.safe_load(config_file)
 
-    logging.config.dictConfig(config)
-
     return config
+
+
+app_config = Settings()
+logging_config = get_logging_config(app_config.logging_config_path)

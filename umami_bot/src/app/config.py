@@ -1,7 +1,7 @@
 """Модуль конфигурации бота."""
 
-import logging.config
 import yaml
+from typing import Any
 
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -22,12 +22,21 @@ class Settings(BaseSettings):
     )
 
 
-bot_config = Settings()
 
+def get_logging_config(config_path: str) -> dict[str, Any]:
+    """Инициализирует конфигурацию логгера приложения.
 
-def init_logging_config() -> None:
-    """Инициализирует конфигурацию логгера приложения."""
-    with open(bot_config.logging_config_path, "r") as config_file:
+    Args:
+        config_path: Путь к файлу конфигурации.
+
+    Returns:
+        Словарь с конфигурацией логгера.
+    """
+    with open(config_path, "r") as config_file:
         config = yaml.safe_load(config_file)
 
-    logging.config.dictConfig(config)
+    return config
+
+
+bot_config = Settings()
+logging_config = get_logging_config(bot_config.logging_config_path)
