@@ -13,6 +13,7 @@ app = FastAPI(
     description="Your cooking companion!",
     version="0.1.0",
 )
+loader.init_all(app)
 
 
 @app.get("/")
@@ -22,7 +23,6 @@ async def index() -> dict:
 
 
 if __name__ == "__main__":
-    loader.init_all(app)
     uvicorn.run(
         "app.main:app",
         host="0.0.0.0",

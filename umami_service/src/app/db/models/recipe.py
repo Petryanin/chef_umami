@@ -19,3 +19,4 @@ class RecipeModel(Base):
     servings: Mapped[const.DBTypes.smallint | None]
     difficulty: Mapped[const.DBTypes.smallint | None]
     category: Mapped[const.DBTypes.smallint | None]
+    ingredeints = list  # TODO: реализовать модель ингредиентов
