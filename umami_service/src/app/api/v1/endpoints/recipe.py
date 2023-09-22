@@ -10,10 +10,10 @@ router = APIRouter()
 
 
 @router.get("")
-async def get_recipes_by_search_string(
+async def get_recipes_list(
     search_string: str = Path(),
 ) -> list[recipe.RecipeSimple]:
-    """Возвращает список рецептов по строке поиска.
+    """Возвращает список рецептов.
 
     Args:
         search_string: Строка поиска.
@@ -23,7 +23,7 @@ async def get_recipes_by_search_string(
     """
 
 
-@router.post("/create")
+@router.post("")
 async def create_recipe(
     recipe: recipe.RecipeCreate,
 ) -> recipe.RecipeCreate:

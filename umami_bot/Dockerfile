@@ -20,7 +20,7 @@ COPY .env .
 COPY logging_config.yaml .
 
 COPY scripts .
-COPY tests .
+# COPY tests .
 
 ENV PYTHONPATH="${PYTHONPATH}:/usr/umami_bot/src"
 

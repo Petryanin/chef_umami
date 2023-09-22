@@ -12,4 +12,4 @@ class IngredientModel(Base):
     __tablename__ = "ingredient"
 
     ingredient_id: Mapped[const.DBTypes.integer] = mapped_column(primary_key=True)
-    name: Mapped[const.DBTypes.varchar_255]
+    name: Mapped[const.DBTypes.varchar_255] = mapped_column(unique=True)

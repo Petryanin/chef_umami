@@ -20,7 +20,7 @@ COPY .env .
 COPY logging_config.yaml .
 
 COPY scripts .
-COPY tests .
+# COPY tests .
 
 COPY alembic.ini .
 COPY migrations .

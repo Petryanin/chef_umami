@@ -1,9 +1,10 @@
 """Модель рецепта."""
 
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, Relationship, relationship
 
 from app.db import const
 from app.db.models.base import Base
+from app.db.models.ingredient import IngredientModel
 
 
 class RecipeModel(Base):
@@ -19,4 +20,7 @@ class RecipeModel(Base):
     servings: Mapped[const.DBTypes.smallint | None]
     difficulty: Mapped[const.DBTypes.smallint | None]
     category: Mapped[const.DBTypes.smallint | None]
-    ingredeints = list  # TODO: реализовать модель ингредиентов
+
+    ingredients: Mapped[Relationship[IngredientModel]] = relationship(
+        "RecipeIngredient", back_populates="recipe"
+    )
