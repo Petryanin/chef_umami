@@ -4,8 +4,8 @@ import logging.config
 
 from fastapi import FastAPI
 
-from app import config
 from app.api import API_PREFIX, api_v1_router
+from app.core import config
 from app.middlewares.logging import LoggingMiddleware
 
 

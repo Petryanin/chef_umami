@@ -1,9 +1,14 @@
 """Обработчики запросов, связанных с рецептами."""
 
 
-from fastapi import APIRouter, Path
+from http import HTTPStatus
 
-from app.schemas import recipe
+from fastapi import APIRouter, Depends, HTTPException, Path
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app import schemas
+from app.core.dependencies import get_db_session
+from app.db.models.recipe import Recipe
 
 
 router = APIRouter()
@@ -12,7 +17,7 @@ router = APIRouter()
 @router.get("")
 async def get_recipes_list(
     search_string: str = Path(),
-) -> list[recipe.RecipeSimple]:
+) -> list[schemas.RecipeSimple]:
     """Возвращает список рецептов.
 
     Args:
@@ -25,15 +30,24 @@ async def get_recipes_list(
 
 @router.post("")
 async def create_recipe(
-    recipe: recipe.RecipeCreate,
-) -> recipe.RecipeCreate:
+    recipe: schemas.RecipeCreate, db_session: AsyncSession = Depends(get_db_session)
+) -> schemas.RecipeCreateSuccess:
     """Создает рецепт.
 
     Args:
         recipe: Объект создаваемого рецепта.
+        db_session: Объект сессии БД.
 
     Returns:
-        _description_
+        None
     """
-    # FIXME
-    return recipe
+    recipe_id = await Recipe.create(db_session, recipe)
+
+    if not recipe_id:
+        raise HTTPException(
+            HTTPStatus.INTERNAL_SERVER_ERROR, detail="Error creating recipe"
+        )
+
+    return schemas.RecipeCreateSuccess(
+        recipe_id=recipe_id, message="Recipe successfully created"
+    )

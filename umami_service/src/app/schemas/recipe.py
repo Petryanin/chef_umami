@@ -5,6 +5,8 @@ import re
 
 from pydantic import BaseModel, field_validator
 
+from app.schemas.ingredient import RecipeIngredient
+
 
 class RecipeDifficulty(enum.IntEnum):
     """Перечисление сложностей приготовления."""
@@ -34,6 +36,7 @@ class RecipeCreate(BaseModel):
     servings: int | None
     difficulty: RecipeDifficulty | None
     category: int | None
+    ingredients: list[RecipeIngredient]
 
     @field_validator("name")
     @classmethod
@@ -78,3 +81,10 @@ class RecipeCreate(BaseModel):
             raise ValueError("Invalid description")
 
         return value
+
+
+class RecipeCreateSuccess(BaseModel):
+    """Схема успешного создания рецепта."""
+
+    recipe_id: int
+    message: str

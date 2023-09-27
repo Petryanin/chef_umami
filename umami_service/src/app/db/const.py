@@ -6,7 +6,7 @@ from typing import Annotated
 import sqlalchemy
 from sqlalchemy.engine.url import URL
 
-from app.config import app_config
+from app.core.config import app_config
 
 
 DATABASE_URL = URL.create(

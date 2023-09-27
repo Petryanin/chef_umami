@@ -5,7 +5,7 @@ import logging
 import uvicorn
 from fastapi import FastAPI
 
-from app import config, loader
+from app.core import config, loader
 
 
 app = FastAPI(
