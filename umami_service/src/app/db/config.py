@@ -8,7 +8,7 @@ from app.core.config import app_config
 from app.db import const
 from app.db import models  # noqa
 
-engine = create_async_engine(const.DATABASE_URL)
+engine = create_async_engine(const.DATABASE_URL, echo=True)
 AsyncSessionLocal = async_sessionmaker(engine)
 
 

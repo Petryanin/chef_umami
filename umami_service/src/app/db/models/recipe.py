@@ -1,16 +1,19 @@
 """Модель рецепта."""
 
+from __future__ import annotations
+
+from typing import Sequence
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import Mapped, Relationship, mapped_column, relationship
+from sqlalchemy.orm import Mapped, Relationship, mapped_column, relationship, lazyload
 
 from app import schemas
 from app.db import config as db_config
 from app.db import const
-from app.db.models.base import Base
-from app.db.models.ingredient import Ingredient
+from app.db import models
 
 
-class Recipe(Base):
+class Recipe(models.Base):
     """Класс модели рецепта."""
 
     __tablename__ = "recipe"
@@ -24,13 +27,13 @@ class Recipe(Base):
     difficulty: Mapped[const.DBTypes.smallint | None]
     category: Mapped[const.DBTypes.smallint | None]
 
-    ingredients: Mapped[Relationship[Ingredient]] = relationship(
-        "Ingredient", secondary="recipe_ingredient", back_populates="recipes"
+    ingredients: Mapped[Relationship[models.Ingredient]] = relationship(
+        "RecipeIngredient", back_populates="recipe"
     )
 
-    @classmethod
+    @staticmethod
     async def create(
-        cls, db_session: AsyncSession, recipe: schemas.RecipeCreate
+        db_session: AsyncSession, recipe: schemas.RecipeCreate
     ) -> int | None:
         """Создает рецепт.
 
@@ -64,3 +67,25 @@ class Recipe(Base):
         await db_session.commit()
 
         return result.scalars().first()
+
+    @staticmethod
+    async def get_all(
+        db_session: AsyncSession,
+        *,
+        with_ingredients: bool = True,
+        with_units: bool = True,
+    ) -> Sequence[Recipe]:
+        """Возвращает список всех рецептов.
+
+        Args:
+            db_session: Объект сессии БД.
+            with_ingredients: Флаг: с ингредиентами.
+            with_units: Флаг: с единицами измерения.
+
+        Returns:
+            Список рецептов.
+        """
+        query = select(Recipe).options(lazyload(Recipe.ingredients))
+        result = await db_session.execute(query)
+
+        return result.scalars().all()

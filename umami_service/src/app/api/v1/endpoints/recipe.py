@@ -1,9 +1,8 @@
 """Обработчики запросов, связанных с рецептами."""
 
-
 from http import HTTPStatus
 
-from fastapi import APIRouter, Depends, HTTPException, Path
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import schemas
@@ -16,16 +15,23 @@ router = APIRouter()
 
 @router.get("")
 async def get_recipes_list(
-    search_string: str = Path(),
-) -> list[schemas.RecipeSimple]:
+    db_session: AsyncSession = Depends(get_db_session),
+    with_ingredients: bool = True,
+    with_units: bool = True,
+):
     """Возвращает список рецептов.
 
     Args:
-        search_string: Строка поиска.
+        db_session: Объект сессии БД.
+        with_ingredients: Флаг: с ингредиентами.
+        with_units: Флаг: с единицами измерения.
 
     Returns:
         Список рецептов.
     """
+    return await Recipe.get_all(
+        db_session, with_ingredients=with_ingredients, with_units=with_units
+    )
 
 
 @router.post("")

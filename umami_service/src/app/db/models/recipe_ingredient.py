@@ -4,10 +4,10 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, Relationship, mapped_column, relationship
 
 from app.db import const
-from app.db.models.base import Base
+from app.db import models
 
 
-class RecipeIngredient(Base):
+class RecipeIngredient(models.Base):
     """Класс связи рецепты-ингредиенты."""
 
     __tablename__ = "recipe_ingredient"
@@ -26,5 +26,7 @@ class RecipeIngredient(Base):
     sort: Mapped[const.DBTypes.smallint | None]
 
     unit: Mapped[Relationship] = relationship(
-        "Unit", back_populates="recipe_ingredients"
+        "Unit", back_populates="recipe_ingredients", lazy="joined"
     )
+    recipe = relationship("Recipe", back_populates="ingredients")
+    ingredient = relationship("Ingredient", back_populates="recipes", lazy="joined")
