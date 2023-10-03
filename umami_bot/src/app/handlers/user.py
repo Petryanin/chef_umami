@@ -1,9 +1,8 @@
 """Обработчики сообщений от пользователя."""
-
 from aiogram import types
 
-from app.messages import ru
 from app.loader import dp
+from app.messages import ru
 
 
 @dp.message()

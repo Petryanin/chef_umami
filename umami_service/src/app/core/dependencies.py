@@ -1,5 +1,4 @@
 """Модуль с зависимостями."""
-
 from typing import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import AsyncSession

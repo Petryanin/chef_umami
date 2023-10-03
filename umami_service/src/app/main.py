@@ -1,11 +1,11 @@
 """Основной модуль."""
-
 import logging
 
 import uvicorn
 from fastapi import FastAPI
 
-from app.core import config, loader
+from app.core import config
+from app.core import loader
 
 
 app = FastAPI(

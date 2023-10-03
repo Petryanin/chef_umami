@@ -1,9 +1,9 @@
 """Схемы, связанные с рецептами."""
-
 import enum
 import re
 
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel
+from pydantic import field_validator
 
 from app.schemas.ingredient import RecipeIngredient
 

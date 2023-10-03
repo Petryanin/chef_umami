@@ -1,11 +1,11 @@
 """Промежуточное ПО для логирования."""
-
 import logging
 import random
 import string
 import time
 
-from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.base import RequestResponseEndpoint
 from starlette.requests import Request
 from starlette.responses import Response
 
@@ -51,4 +51,3 @@ class LoggingMiddleware(BaseHTTPMiddleware):
     def _get_request_id() -> str:
         """Возвращает уникальный ID запроса."""
         return "".join(random.choices(string.ascii_lowercase + string.digits, k=8))
-

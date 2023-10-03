@@ -4,11 +4,10 @@ Revision ID: 57e0063e0dc0
 Revises:
 Create Date: 2023-09-17 00:57:18.091899
 """
+from typing import Sequence
 
-from typing import Sequence, Union
-
-from alembic import op
 import sqlalchemy as sa
+from alembic import op
 
 
 # revision identifiers, used by Alembic.

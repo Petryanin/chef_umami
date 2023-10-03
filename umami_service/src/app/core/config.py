@@ -1,9 +1,9 @@
 """Модуль конфигурации сервиса."""
-
-import yaml
 from typing import Any
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
+import yaml
+from pydantic_settings import BaseSettings
+from pydantic_settings import SettingsConfigDict
 
 
 class Settings(BaseSettings):

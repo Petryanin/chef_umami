@@ -1,5 +1,4 @@
 """Схемы, связанные с единицами измерения."""
-
 from pydantic import BaseModel
 
 

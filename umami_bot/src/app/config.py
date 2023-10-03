@@ -1,10 +1,10 @@
 """Модуль конфигурации бота."""
-
-import yaml
 from typing import Any
 
+import yaml
 from pydantic import SecretStr
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
+from pydantic_settings import SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -17,10 +17,7 @@ class Settings(BaseSettings):
     chef_name: str
     logging_config_path: str
 
-    model_config = SettingsConfigDict(
-        env_file=".env", env_file_encoding="utf-8"
-    )
-
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
 def get_logging_config(config_path: str) -> dict[str, Any]:

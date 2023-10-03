@@ -1,11 +1,10 @@
 """Обработчик команды `/help`."""
-
 from aiogram import types
 from aiogram.filters.command import Command
 
 from app.config import bot_config
-from app.messages import ru
 from app.loader import dp
+from app.messages import ru
 
 
 @dp.message(Command("help"))

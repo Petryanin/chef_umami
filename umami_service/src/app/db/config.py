@@ -1,7 +1,7 @@
 """Модуль конфигурации базы данных."""
-
 from sqlalchemy import TextClause
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import async_sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.sql import text
 
 from app.core.config import app_config

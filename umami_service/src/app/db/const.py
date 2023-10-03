@@ -1,5 +1,4 @@
 """Константы для работы с БД."""
-
 import decimal
 from typing import Annotated
 

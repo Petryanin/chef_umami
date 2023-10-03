@@ -1,12 +1,10 @@
 """Alembic env."""
-
 import asyncio
 from logging.config import fileConfig
 
 from alembic import context
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
-
 
 from app.db import const
 from app.db.models import base

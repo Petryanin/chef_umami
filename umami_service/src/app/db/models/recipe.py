@@ -1,11 +1,14 @@
 """Модель рецепта."""
-
 from __future__ import annotations
 
 from typing import Sequence
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import Mapped, mapped_column, relationship, selectinload
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import relationship
+from sqlalchemy.orm import selectinload
 
 from app import schemas
 from app.db import config as db_config

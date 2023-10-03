@@ -1,8 +1,8 @@
 """Модуль инициализации объектов конфигурации бота."""
-
 import logging.config
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot
+from aiogram import Dispatcher
 
 from app import config
 from app.config import bot_config

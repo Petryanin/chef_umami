@@ -1,10 +1,10 @@
 """Модуль инициализации объектов конфигурации сервиса."""
-
 import logging.config
 
 from fastapi import FastAPI
 
-from app.api import API_PREFIX, api_v1_router
+from app.api import API_PREFIX
+from app.api import api_v1_router
 from app.core import config
 from app.middlewares.logging import LoggingMiddleware
 

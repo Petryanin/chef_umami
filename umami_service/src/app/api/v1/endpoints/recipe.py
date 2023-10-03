@@ -1,8 +1,9 @@
 """Обработчики запросов, связанных с рецептами."""
-
 from http import HTTPStatus
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter
+from fastapi import Depends
+from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import schemas

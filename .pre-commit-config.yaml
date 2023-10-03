@@ -18,3 +18,9 @@ repos:
     rev: v0.0.285
     hooks:
       - id: ruff
+
+  - repo: https://github.com/asottile/reorder-python-imports
+    rev: v3.12.0
+    hooks:
+      - id: reorder-python-imports
+        args: [--application-directories=./umami_bot/src:./umami_service/src]

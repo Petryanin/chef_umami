@@ -1,6 +1,6 @@
 """Схемы, связанные с ингредиентами."""
-
 import decimal
+
 from pydantic import BaseModel
 
 from app.schemas.unit import UnitCreate

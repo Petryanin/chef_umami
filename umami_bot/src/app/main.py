@@ -1,8 +1,9 @@
 """Модуль запуска бота."""
-
 import asyncio
 
-from app.loader import bot, dp, init_all
+from app.loader import bot
+from app.loader import dp
+from app.loader import init_all
 
 
 async def main() -> None:
