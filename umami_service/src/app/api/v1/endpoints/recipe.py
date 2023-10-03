@@ -30,13 +30,16 @@ async def get_recipes_list(
         Список рецептов.
     """
     return await Recipe.get_all(
-        db_session, with_ingredients=with_ingredients, with_units=with_units
+        db_session,
+        with_ingredients=with_ingredients,
+        with_units=with_units,
     )
 
 
-@router.post("")
+@router.post("", status_code=HTTPStatus.CREATED)
 async def create_recipe(
-    recipe: schemas.RecipeCreate, db_session: AsyncSession = Depends(get_db_session)
+    recipe: schemas.RecipeCreate,
+    db_session: AsyncSession = Depends(get_db_session),
 ) -> schemas.RecipeCreateSuccess:
     """Создает рецепт.
 

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import Mapped, Relationship, mapped_column, relationship, lazyload
+from sqlalchemy.orm import Mapped, mapped_column, relationship, selectinload
 
 from app import schemas
 from app.db import config as db_config
@@ -27,13 +27,16 @@ class Recipe(models.Base):
     difficulty: Mapped[const.DBTypes.smallint | None]
     category: Mapped[const.DBTypes.smallint | None]
 
-    ingredients: Mapped[Relationship[models.Ingredient]] = relationship(
-        "RecipeIngredient", back_populates="recipe"
+    ingredients: Mapped[list[models.RecipeIngredient]] = relationship(
+        "RecipeIngredient",
+        back_populates="recipe",
+        order_by=models.RecipeIngredient.sort,
     )
 
     @staticmethod
     async def create(
-        db_session: AsyncSession, recipe: schemas.RecipeCreate
+        db_session: AsyncSession,
+        recipe: schemas.RecipeCreate,
     ) -> int | None:
         """Создает рецепт.
 
@@ -85,7 +88,17 @@ class Recipe(models.Base):
         Returns:
             Список рецептов.
         """
-        query = select(Recipe).options(lazyload(Recipe.ingredients))
-        result = await db_session.execute(query)
+        opts = []
 
-        return result.scalars().all()
+        if with_ingredients:
+            opt = selectinload(Recipe.ingredients)
+            if with_units:
+                opt = opt.joinedload(models.RecipeIngredient.unit)
+
+            opts.append(opt)
+
+        stmt = select(Recipe).options(*opts)
+
+        result = await db_session.execute(stmt)
+
+        return result.unique().scalars().all()

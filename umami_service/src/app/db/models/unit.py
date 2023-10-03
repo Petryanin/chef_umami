@@ -1,12 +1,14 @@
 """Модель единицы измерения ингредиента."""
 
+from __future__ import annotations
+
 from sqlalchemy.orm import Mapped, Relationship, mapped_column, relationship
 
 from app.db import const
-from app.db.models.base import Base
+from app.db import models
 
 
-class Unit(Base):
+class Unit(models.Base):
     """Класс модели единицы измерения ингредиента."""
 
     __tablename__ = "unit"
