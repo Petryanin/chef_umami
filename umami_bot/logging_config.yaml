@@ -4,7 +4,9 @@ disable_existing_loggers: no
 formatters:
     simple:
         (): colorlog.ColoredFormatter
-        format: "{asctime} [{bold}{log_color}{levelname}{reset}]: ({bold}{blue}{filename}{reset}:{purple}{lineno}{reset}) {message}"
+        format: >-
+            {thin_white}{asctime}{reset} {bold}{log_color}[{levelname}]{reset}
+            ({bold}{blue}{filename}{reset}:{purple}{lineno}{reset}) {message}
         style: "{"
         datefmt: "%Y-%m-%d %H:%M:%S"
         log_colors:
@@ -15,7 +17,9 @@ formatters:
             CRITICAL: bold_red,bg_white
     verbose:
         (): colorlog.ColoredFormatter
-        format: "{asctime} [{bold}{log_color}{levelname}{reset}]: ({thin_green}{name}{reset} in {cyan}{funcName}{reset} - {bold}{blue}{filename}{reset}:{purple}{lineno}{reset})  {message}"
+        format: >-
+            {thin_white}{asctime}{reset} {bold}{log_color}[{levelname}]{reset} ({thin_green}{name}{reset} in
+            {bold}{blue}{filename}{reset}:{purple}{lineno}{reset}#{cyan}{funcName}{reset}) {message}
         style: "{"
         datefmt: "%Y-%m-%d %H:%M:%S"
         log_colors:

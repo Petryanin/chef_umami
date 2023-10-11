@@ -16,7 +16,7 @@ class RecipeIngredient(models.Base):
     __tablename__ = "recipe_ingredient"
 
     recipe_ingredient_id: Mapped[const.DBTypes.integer] = mapped_column(
-        primary_key=True
+        primary_key=True,
     )
     recipe_id: Mapped[const.DBTypes.integer] = mapped_column(
         ForeignKey(

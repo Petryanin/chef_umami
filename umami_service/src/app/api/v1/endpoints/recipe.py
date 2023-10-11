@@ -14,27 +14,28 @@ from app.db.models.recipe import Recipe
 router = APIRouter()
 
 
-@router.get("")
+@router.get(
+    "",
+    response_model_exclude_defaults=True,
+)
 async def get_recipes_list(
     db_session: AsyncSession = Depends(get_db_session),
     with_ingredients: bool = True,
-    with_units: bool = True,
-):
+) -> list[schemas.RecipeFull]:
     """Возвращает список рецептов.
 
     Args:
         db_session: Объект сессии БД.
         with_ingredients: Флаг: с ингредиентами.
-        with_units: Флаг: с единицами измерения.
 
     Returns:
         Список рецептов.
     """
-    return await Recipe.get_all(
+    recipes = await Recipe.get_all(
         db_session,
         with_ingredients=with_ingredients,
-        with_units=with_units,
     )
+    return [schemas.RecipeFull.model_validate(recipe) for recipe in recipes]
 
 
 @router.post("", status_code=HTTPStatus.CREATED)

@@ -7,6 +7,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import noload
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import selectinload
 
@@ -79,29 +80,25 @@ class Recipe(models.Base):
         db_session: AsyncSession,
         *,
         with_ingredients: bool = True,
-        with_units: bool = True,
     ) -> Sequence[Recipe]:
         """Возвращает список всех рецептов.
 
         Args:
             db_session: Объект сессии БД.
             with_ingredients: Флаг: с ингредиентами.
-            with_units: Флаг: с единицами измерения.
 
         Returns:
             Список рецептов.
         """
-        opts = []
 
         if with_ingredients:
-            opt = selectinload(Recipe.ingredients)
-            if with_units:
-                opt = opt.joinedload(models.RecipeIngredient.unit)
+            opt = selectinload(Recipe.ingredients).joinedload(
+                models.RecipeIngredient.unit
+            )
+        else:
+            opt = noload(Recipe.ingredients)
 
-            opts.append(opt)
-
-        stmt = select(Recipe).options(*opts)
-
+        stmt = select(Recipe).options(opt)
         result = await db_session.execute(stmt)
 
         return result.unique().scalars().all()

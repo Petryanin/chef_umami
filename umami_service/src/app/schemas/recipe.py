@@ -3,9 +3,12 @@ import enum
 import re
 
 from pydantic import BaseModel
+from pydantic import ConfigDict
+from pydantic import Field
 from pydantic import field_validator
 
-from app.schemas.ingredient import RecipeIngredient
+from app.schemas.ingredient import RecipeIngredientCreate
+from app.schemas.ingredient import RecipeIngredientFull
 
 
 class RecipeDifficulty(enum.IntEnum):
@@ -18,16 +21,8 @@ class RecipeDifficulty(enum.IntEnum):
     EXPERT = enum.auto()
 
 
-class RecipeSimple(BaseModel):
-    """Простая схема рецепта."""
-
-    recipe_id: int
-    name: str
-    description: str
-
-
-class RecipeCreate(BaseModel):
-    """Cхема создания рецепта."""
+class RecipeBase(BaseModel):
+    """Базовая рецепта."""
 
     name: str
     description: str | None
@@ -36,7 +31,21 @@ class RecipeCreate(BaseModel):
     servings: int | None
     difficulty: RecipeDifficulty | None
     category: int | None
-    ingredients: list[RecipeIngredient]
+
+
+class RecipeFull(RecipeBase):
+    """Полная схема рецепта."""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    recipe_id: int
+    ingredients: list[RecipeIngredientFull] = Field(default_factory=list)
+
+
+class RecipeCreate(RecipeBase):
+    """Cхема создания рецепта."""
+
+    ingredients: list[RecipeIngredientCreate]
 
     @field_validator("name")
     @classmethod
